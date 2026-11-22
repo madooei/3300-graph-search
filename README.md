@@ -1,6 +1,6 @@
 # Graph Search
 
-The code for the graph search chapter: depth-first search, written recursively and with an explicit stack, breadth-first search with a queue, recovering a path with the fewest edges, and counting connected components. Each search has a JUnit suite, and so does the hash set they use.
+The code for the graph search chapter: depth-first search, written recursively and with an explicit stack, breadth-first search with a queue, recovering a path, and counting connected components. Each search has a JUnit suite, and so does the hash set they use.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ code/
         DepthFirstRecursive.java      # depth-first search, recursively
         DepthFirstStack.java          # depth-first search with an explicit stack
         BreadthFirst.java             # breadth-first search with a queue
-        ShortestPath.java             # predecessors and pathTo
+        PathRecovery.java             # predecessors and pathTo
         Components.java               # countComponents
         Main.java                     # a small demo
       graph/
@@ -48,7 +48,7 @@ code/
         DepthFirstRecursiveTest.java  # runs them against DepthFirstRecursive
         DepthFirstStackTest.java      # runs them against DepthFirstStack
         BreadthFirstTest.java         # runs them against BreadthFirst
-        ShortestPathTest.java
+        PathRecoveryTest.java
         ComponentsTest.java
       set/
         SetTest.java                  # unchanged copy of the course Set contract suite
@@ -67,7 +67,7 @@ code/
 ## What's here
 
 - `search.DepthFirstRecursive`, `search.DepthFirstStack`, and `search.BreadthFirst` — each returns the `Set` of vertices reachable from a start vertex.
-- `search.ShortestPath` — `predecessors` runs a breadth-first search and records the vertex each vertex was reached from; `pathTo` reads a path back out of that map.
+- `search.PathRecovery` — `predecessors` runs a breadth-first search and records the vertex each vertex was reached from; `pathTo` reads a path back out of that map.
 - `search.Components` — `countComponents` counts the connected components of an undirected graph.
 - `search.Main` — runs the searches on the chapter's seven-vertex example graph.
 - `set.HashSet` — the visited set. It is new in this repo: a `Set` whose elements are the keys of a course `HashMap`. `set.HashSetTest` runs the course `Set` contract suite against it.

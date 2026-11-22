@@ -12,10 +12,10 @@ import set.Set;
 import stack.ArrayStack;
 import stack.Stack;
 
-/** Recovering a path with the fewest edges, from a breadth-first search. */
-public final class ShortestPath {
+/** Recovering a path from a breadth-first search. */
+public final class PathRecovery {
 
-  private ShortestPath() {
+  private PathRecovery() {
     // This class should not be instantiated!
   }
 
@@ -35,7 +35,7 @@ public final class ShortestPath {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Returns a path with the fewest edges from start to target, or an empty
+  // Returns a path from start to target, or an empty
   // list if target is not reachable from start. Assumes graph is not null and
   // start and target are vertices of graph.
   public static <V> List<V> findPath(Graph<V> graph, V start, V target) {
