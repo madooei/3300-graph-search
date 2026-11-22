@@ -19,9 +19,9 @@ public final class Main {
     Set<Integer> reachable = BreadthFirst.breadthFirst(graph, 0);
     System.out.println("Reachable from 0: " + reachable.size() + " vertices");
 
-    Map<Integer, Integer> predecessor = ShortestPath.predecessors(graph, 0);
-    List<Integer> path = ShortestPath.pathTo(predecessor, 0, 6);
-    String line = "Shortest path 0 -> 6: " + path.get(0);
+    Map<Integer, Integer> predecessor = PathRecovery.predecessors(graph, 0);
+    List<Integer> path = PathRecovery.pathTo(predecessor, 0, 6);
+    String line = "Path 0 -> 6: " + path.get(0);
     for (int i = 1; i < path.size(); i++) {
       line += " -> " + path.get(i);
     }
