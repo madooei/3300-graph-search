@@ -27,7 +27,6 @@ public final class Main {
     }
     System.out.println(line);
 
-    System.out.println("Connected components: " + Components.countComponents(graph));
   }
 
   // The chapter's example: seven vertices, 0 through 6, all reachable from 0.
