@@ -22,7 +22,7 @@ public final class PathRecovery {
   // Returns a map from each vertex reachable from start, other than start, to
   // the vertex it was first reached from. Assumes graph is not null and start
   // is a vertex of graph.
-  public static <V> Map<V, V> predecessors(Graph<V> graph, V start) {
+  public static <V> Map<V, V> search(Graph<V> graph, V start) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
@@ -35,10 +35,11 @@ public final class PathRecovery {
     throw new UnsupportedOperationException("TODO: Implement me");
   }
 
-  // Returns a path from start to target, or an empty
-  // list if target is not reachable from start. Assumes graph is not null and
-  // start and target are vertices of graph.
-  public static <V> List<V> findPath(Graph<V> graph, V start, V target) {
+  // Returns a map from each vertex the search reached, other than start, to
+  // the vertex it was first reached from. The search stops when target comes
+  // out of the queue. Assumes graph is not null and start and target are
+  // vertices of graph.
+  public static <V> Map<V, V> search(Graph<V> graph, V start, V target) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }

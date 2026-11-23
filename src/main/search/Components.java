@@ -21,7 +21,7 @@ public final class Components {
   }
 
   // Adds to visited every vertex reachable from start that is not already in it.
-  private static <V> void markReachable(Graph<V> graph, V start, Set<V> visited) {
+  private static <V> void search(Graph<V> graph, V start, Set<V> visited) {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
