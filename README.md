@@ -1,6 +1,6 @@
 # Graph Search
 
-The code for the graph search chapter: depth-first search, written recursively and with an explicit stack, breadth-first search with a queue, recovering a path, and counting connected components. Each search has a JUnit suite, and so does the hash set they use.
+The code for the graph search chapter: depth-first search, written recursively and with an explicit stack, breadth-first search with a queue, recovering a path, and searching for a target. Each search has a JUnit suite, and so does the hash set they use.
 
 ## Prerequisites
 
@@ -22,7 +22,6 @@ code/
         DepthFirstStack.java          # depth-first search with an explicit stack
         BreadthFirst.java             # breadth-first search with a queue
         PathRecovery.java             # search, search with a target, and pathTo
-        Components.java               # countComponents
         Main.java                     # a small demo
       graph/
         Graph.java                    # unchanged copy of the Graph ADT
@@ -49,7 +48,6 @@ code/
         DepthFirstStackTest.java      # runs them against DepthFirstStack
         BreadthFirstTest.java         # runs them against BreadthFirst
         PathRecoveryTest.java
-        ComponentsTest.java
       set/
         SetTest.java                  # unchanged copy of the course Set contract suite
         HashSetTest.java              # runs it against HashSet
@@ -68,6 +66,5 @@ code/
 
 - `search.DepthFirstRecursive`, `search.DepthFirstStack`, and `search.BreadthFirst` — each returns the `Set` of vertices reachable from a start vertex.
 - `search.PathRecovery` — `search` runs a breadth-first search and returns the vertex each vertex was reached from; its overload with a target stops when the target comes out of the queue; `pathTo` reads a path back out of either map.
-- `search.Components` — `countComponents` counts the connected components of an undirected graph.
 - `search.Main` — runs the searches on the chapter's seven-vertex example graph.
 - `set.HashSet` — the visited set. It is new in this repo: a `Set` whose elements are the keys of a course `HashMap`. `set.HashSetTest` runs the course `Set` contract suite against it.
