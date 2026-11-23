@@ -21,7 +21,7 @@ code/
         DepthFirstRecursive.java      # depth-first search, recursively
         DepthFirstStack.java          # depth-first search with an explicit stack
         BreadthFirst.java             # breadth-first search with a queue
-        PathRecovery.java             # predecessors and pathTo
+        PathRecovery.java             # search, search with a target, and pathTo
         Components.java               # countComponents
         Main.java                     # a small demo
       graph/
@@ -67,7 +67,7 @@ code/
 ## What's here
 
 - `search.DepthFirstRecursive`, `search.DepthFirstStack`, and `search.BreadthFirst` — each returns the `Set` of vertices reachable from a start vertex.
-- `search.PathRecovery` — `predecessors` runs a breadth-first search and records the vertex each vertex was reached from; `pathTo` reads a path back out of that map.
+- `search.PathRecovery` — `search` runs a breadth-first search and returns the vertex each vertex was reached from; its overload with a target stops when the target comes out of the queue; `pathTo` reads a path back out of either map.
 - `search.Components` — `countComponents` counts the connected components of an undirected graph.
 - `search.Main` — runs the searches on the chapter's seven-vertex example graph.
 - `set.HashSet` — the visited set. It is new in this repo: a `Set` whose elements are the keys of a course `HashMap`. `set.HashSetTest` runs the course `Set` contract suite against it.

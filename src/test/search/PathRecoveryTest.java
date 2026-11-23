@@ -15,60 +15,60 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PathRecoveryTest {
 
   @Test
-  public void predecessorsHasNoEntryForTheStart() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(diamond(), 0);
+  public void searchHasNoEntryForTheStart() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0);
     assertFalse(predecessor.containsKey(0));
   }
 
   @Test
-  public void predecessorsRecordsTheVertexANeighborWasReachedFrom() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(diamond(), 0);
+  public void searchRecordsTheVertexANeighborWasReachedFrom() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0);
     assertEquals(0, predecessor.get(1));
   }
 
   @Test
-  public void predecessorsHasAnEntryForEveryOtherReachableVertex() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(diamond(), 0);
+  public void searchHasAnEntryForEveryOtherReachableVertex() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0);
     assertEquals(3, predecessor.size());
   }
 
   @Test
-  public void predecessorsHasNoEntryForAnUnreachableVertex() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(lineWithLoneVertex(), 0);
+  public void searchHasNoEntryForAnUnreachableVertex() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0);
     assertFalse(predecessor.containsKey(4));
   }
 
   @Test
   public void pathToTheStartIsJustTheStart() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(diamond(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 0);
     assertEquals(1, path.size());
   }
 
   @Test
   public void pathToANeighborHasTwoVertices() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(diamond(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 1);
     assertEquals(2, path.size());
   }
 
   @Test
   public void pathStartsAtTheStart() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(lineWithLoneVertex(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertEquals(0, path.get(0));
   }
 
   @Test
   public void pathEndsAtTheTarget() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(lineWithLoneVertex(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertEquals(3, path.get(3));
   }
 
   @Test
   public void pathListsTheVerticesBetweenInOrder() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(lineWithLoneVertex(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertEquals(1, path.get(1));
   }
@@ -76,7 +76,7 @@ public class PathRecoveryTest {
   @Test
   public void firstStepOfAPathIsAnEdge() {
     Graph<Integer> graph = diamond();
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(graph, 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(graph, 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertTrue(graph.containsEdge(path.get(0), path.get(1)));
   }
@@ -84,50 +84,51 @@ public class PathRecoveryTest {
   @Test
   public void lastStepOfAPathIsAnEdge() {
     Graph<Integer> graph = diamond();
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(graph, 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(graph, 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertTrue(graph.containsEdge(path.get(1), path.get(2)));
   }
 
   @Test
   public void pathToAnUnreachableVertexIsEmpty() {
-    Map<Integer, Integer> predecessor = PathRecovery.predecessors(lineWithLoneVertex(), 0);
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0);
     List<Integer> path = PathRecovery.pathTo(predecessor, 0, 4);
     assertEquals(0, path.size());
   }
 
   @Test
-  public void findPathToTheStartIsJustTheStart() {
-    List<Integer> path = PathRecovery.findPath(diamond(), 0, 0);
-    assertEquals(1, path.size());
+  public void searchForTheStartRecordsNoPredecessors() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(diamond(), 0, 0);
+    assertEquals(0, predecessor.size());
   }
 
   @Test
-  public void findPathStartsAtTheStart() {
-    List<Integer> path = PathRecovery.findPath(lineWithLoneVertex(), 0, 3);
-    assertEquals(0, path.get(0));
+  public void searchForATargetRecordsTheVertexTheTargetWasReachedFrom() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0, 3);
+    assertEquals(2, predecessor.get(3));
   }
 
   @Test
-  public void findPathEndsAtTheTarget() {
-    List<Integer> path = PathRecovery.findPath(lineWithLoneVertex(), 0, 3);
-    assertEquals(3, path.get(3));
-  }
-
-  @Test
-  public void findPathListsTheVerticesBetweenInOrder() {
-    List<Integer> path = PathRecovery.findPath(lineWithLoneVertex(), 0, 3);
+  public void searchForATargetGivesThePathToTheTarget() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0, 3);
+    List<Integer> path = PathRecovery.pathTo(predecessor, 0, 3);
     assertEquals(1, path.get(1));
   }
 
   @Test
-  public void findPathToAnUnreachableVertexIsEmpty() {
-    List<Integer> path = PathRecovery.findPath(lineWithLoneVertex(), 0, 4);
-    assertEquals(0, path.size());
+  public void searchForAnUnreachableTargetHasNoEntryForTheTarget() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0, 4);
+    assertFalse(predecessor.containsKey(4));
   }
 
   @Test
-  public void findPathStopsWhenTheTargetComesOut() {
+  public void searchForAnUnreachableTargetRecordsEveryOtherReachableVertex() {
+    Map<Integer, Integer> predecessor = PathRecovery.search(lineWithLoneVertex(), 0, 4);
+    assertEquals(3, predecessor.size());
+  }
+
+  @Test
+  public void searchForATargetStopsWhenTheTargetComesOut() {
     // In the line 0 -> 1 -> 2 -> 3, a search for 1 processes 0 and then 1.
     // It must stop there, so it asks only 0 for its neighbors.
     final List<Integer> asked = new ArrayList<>();
@@ -144,7 +145,7 @@ public class PathRecoveryTest {
     graph.addEdge(0, 1);
     graph.addEdge(1, 2);
     graph.addEdge(2, 3);
-    PathRecovery.findPath(graph, 0, 1);
+    PathRecovery.search(graph, 0, 1);
     assertEquals(1, asked.size());
   }
 

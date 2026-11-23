@@ -22,14 +22,14 @@ public final class Components {
     for (V v : graph.vertices()) {
       if (!visited.contains(v)) {
         count++;
-        markReachable(graph, v, visited);
+        search(graph, v, visited);
       }
     }
     return count;
   }
 
   // Adds to visited every vertex reachable from start that is not already in it.
-  private static <V> void markReachable(Graph<V> graph, V start, Set<V> visited) {
+  private static <V> void search(Graph<V> graph, V start, Set<V> visited) {
     Stack<V> toProcess = new ArrayStack<>();
     visited.add(start);
     toProcess.push(start);

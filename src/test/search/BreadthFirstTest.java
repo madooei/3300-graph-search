@@ -8,6 +8,6 @@ public class BreadthFirstTest extends GraphSearchTest {
 
   @Override
   protected Set<Integer> search(Graph<Integer> graph, int start) {
-    return BreadthFirst.breadthFirst(graph, start);
+    return BreadthFirst.search(graph, start);
   }
 }

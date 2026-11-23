@@ -15,7 +15,7 @@ public final class BreadthFirst {
 
   // Returns the set of vertices reachable from start, including start.
   // Assumes graph is not null and start is a vertex of graph.
-  public static <V> Set<V> breadthFirst(Graph<V> graph, V start) {
+  public static <V> Set<V> search(Graph<V> graph, V start) {
     Set<V> visited = new HashSet<>();
     Queue<V> toProcess = new LinkedQueue<>();
 

@@ -13,7 +13,7 @@ public final class DepthFirstRecursive {
 
   // Returns the set of vertices reachable from start, including start.
   // Assumes graph is not null and start is a vertex of graph.
-  public static <V> Set<V> depthFirst(Graph<V> graph, V start) {
+  public static <V> Set<V> search(Graph<V> graph, V start) {
     Set<V> visited = new HashSet<>();
     search(graph, start, visited);
     return visited;

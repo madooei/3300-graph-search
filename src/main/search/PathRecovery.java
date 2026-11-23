@@ -22,7 +22,7 @@ public final class PathRecovery {
   // Returns a map from each vertex reachable from start, other than start, to
   // the vertex it was first reached from. Assumes graph is not null and start
   // is a vertex of graph.
-  public static <V> Map<V, V> predecessors(Graph<V> graph, V start) {
+  public static <V> Map<V, V> search(Graph<V> graph, V start) {
     Set<V> visited = new HashSet<>();
     Map<V, V> predecessor = new HashMap<>();
     Queue<V> toProcess = new LinkedQueue<>();
@@ -68,10 +68,11 @@ public final class PathRecovery {
     return path;
   }
 
-  // Returns a path from start to target, or an empty
-  // list if target is not reachable from start. Assumes graph is not null and
-  // start and target are vertices of graph.
-  public static <V> List<V> findPath(Graph<V> graph, V start, V target) {
+  // Returns a map from each vertex the search reached, other than start, to
+  // the vertex it was first reached from. The search stops when target comes
+  // out of the queue. Assumes graph is not null and start and target are
+  // vertices of graph.
+  public static <V> Map<V, V> search(Graph<V> graph, V start, V target) {
     Set<V> visited = new HashSet<>();
     Map<V, V> predecessor = new HashMap<>();
     Queue<V> toProcess = new LinkedQueue<>();
@@ -83,7 +84,7 @@ public final class PathRecovery {
       V v = toProcess.front();
       toProcess.dequeue();
       if (v.equals(target)) {
-        return pathTo(predecessor, start, target);
+        break;  // the target came out, so stop the search
       }
       for (V neighbor : graph.neighbors(v)) {
         if (!visited.contains(neighbor)) {
@@ -93,6 +94,6 @@ public final class PathRecovery {
         }
       }
     }
-    return new ArrayList<>();  // the queue emptied before the target came out
+    return predecessor;
   }
 }

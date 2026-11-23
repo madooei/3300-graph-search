@@ -8,6 +8,6 @@ public class DepthFirstStackTest extends GraphSearchTest {
 
   @Override
   protected Set<Integer> search(Graph<Integer> graph, int start) {
-    return DepthFirstStack.depthFirst(graph, start);
+    return DepthFirstStack.search(graph, start);
   }
 }
