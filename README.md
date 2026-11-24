@@ -66,7 +66,7 @@ code/
 - `scripts/test.sh search.BreadthFirstTest` — compiles everything and runs only that test class.
 - `scripts/run.sh demo.BreadthFirstDemo` — compiles everything and runs that one demo. Every class you implement has its own demo.
 
-## What's here
+## Contents
 
 - `search.DepthFirstRecursive`, `search.DepthFirstStack`, and `search.BreadthFirst` — each returns the `Set` of vertices reachable from a start vertex.
 - `search.PathRecovery` — `search` runs a breadth-first search and returns the vertex each vertex was reached from; its overload with a target stops when the target comes out of the queue; `pathTo` reads a path back out of either map.
