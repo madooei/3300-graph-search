@@ -27,7 +27,7 @@ code/
         AdjacencyListGraph.java       # unchanged copy of the graph chapter's implementation
       set/
         Set.java                      # unchanged copy of the course Set ADT
-        HashSet.java                  # a set backed by the course HashMap
+        HashSet.java                  # a hash set with separate chaining, copied from the chaining chapter
       map/
         Map.java                      # unchanged copy of the course Map ADT
         HashMap.java                  # unchanged copy of the course hash table
@@ -70,5 +70,5 @@ code/
 
 - `search.DepthFirstRecursive`, `search.DepthFirstStack`, and `search.BreadthFirst` — each returns the `Set` of vertices reachable from a start vertex.
 - `search.PathRecovery` — `search` runs a breadth-first search and returns the vertex each vertex was reached from; its overload with a target stops when the target comes out of the queue; `pathTo` reads a path back out of either map.
-- `set.HashSet` — the visited set. It is new in this repo: a `Set` whose elements are the keys of a course `HashMap`. `set.HashSetTest` runs the course `Set` contract suite against it.
+- `set.HashSet` — the visited set: the separate chaining chapter's hash set, copied unchanged. `set.HashSetTest` is copied with it: it runs the course `Set` contract suite against `HashSet`, then checks the buckets by reflection.
 - `demo.DepthFirstRecursiveDemo`, `demo.DepthFirstStackDemo`, `demo.BreadthFirstDemo`, and `demo.PathRecoveryDemo` — one demo per search class, each on the chapter's seven-vertex example graph.
