@@ -1,32 +1,29 @@
-package search;
+package demo;
 
 import graph.AdjacencyListGraph;
 import graph.Graph;
-import list.List;
-import map.Map;
+import search.DepthFirstRecursive;
 import set.Set;
 
-/** A small demo of the graph searches on the chapter's example graph. */
-public final class Main {
+/** A demo of DepthFirstRecursive on the chapter's seven-vertex graph. */
+public final class DepthFirstRecursiveDemo {
 
-  private Main() {
+  private DepthFirstRecursiveDemo() {
     // This class should not be instantiated!
   }
 
   public static void main(String[] args) {
     Graph<Integer> graph = buildExampleGraph();
+    System.out.println("edges: 0-1, 0-2, 0-3, 1-4, 3-5, 5-6, 4-6");
 
-    Set<Integer> reachable = BreadthFirst.search(graph, 0);
-    System.out.println("Reachable from 0: " + reachable.size() + " vertices");
-
-    Map<Integer, Integer> predecessor = PathRecovery.search(graph, 0);
-    List<Integer> path = PathRecovery.pathTo(predecessor, 0, 6);
-    String line = "Path 0 -> 6: " + path.get(0);
-    for (int i = 1; i < path.size(); i++) {
-      line += " -> " + path.get(i);
+    // Every vertex is reachable from 0. Expect all seven vertices, 0 through 6.
+    Set<Integer> reachable = DepthFirstRecursive.search(graph, 0);
+    String line = "reachable from 0:";
+    for (int vertex : reachable) {
+      line += " " + vertex;
     }
     System.out.println(line);
-
+    System.out.println("count: " + reachable.size());
   }
 
   // The chapter's example: seven vertices, 0 through 6, all reachable from 0.
