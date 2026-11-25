@@ -2,7 +2,6 @@ package search;
 
 import graph.AdjacencyListGraph;
 import graph.Graph;
-import list.ArrayList;
 import list.List;
 import map.Map;
 
@@ -131,14 +130,7 @@ public class PathRecoveryTest {
   public void searchForATargetStopsWhenTheTargetComesOut() {
     // In the line 0 -> 1 -> 2 -> 3, a search for 1 processes 0 and then 1.
     // It must stop there, so it asks only 0 for its neighbors.
-    final List<Integer> asked = new ArrayList<>();
-    Graph<Integer> graph = new AdjacencyListGraph<Integer>() {
-      @Override
-      public Iterable<Integer> neighbors(Integer vertex) {
-        asked.add(vertex);
-        return super.neighbors(vertex);
-      }
-    };
+    CountingGraph graph = new CountingGraph();
     for (int vertex = 0; vertex < 4; vertex++) {
       graph.addVertex(vertex);
     }
@@ -146,7 +138,7 @@ public class PathRecoveryTest {
     graph.addEdge(1, 2);
     graph.addEdge(2, 3);
     PathRecovery.search(graph, 0, 1);
-    assertEquals(1, asked.size());
+    assertEquals(1, graph.neighborCalls);
   }
 
   // The directed diamond 0 -> 1, 0 -> 2, 1 -> 3, 2 -> 3.
@@ -175,5 +167,16 @@ public class PathRecoveryTest {
       graph.addVertex(vertex);
     }
     return graph;
+  }
+
+  // An adjacency-list graph that counts its calls to neighbors.
+  private static class CountingGraph extends AdjacencyListGraph<Integer> {
+    private int neighborCalls;
+
+    @Override
+    public Iterable<Integer> neighbors(Integer vertex) {
+      neighborCalls++;
+      return super.neighbors(vertex);
+    }
   }
 }
