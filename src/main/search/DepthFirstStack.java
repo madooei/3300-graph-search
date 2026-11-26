@@ -23,9 +23,9 @@ public final class DepthFirstStack {
     toProcess.push(start);
 
     while (!toProcess.isEmpty()) {
-      V v = toProcess.top();
+      V vertex = toProcess.top();
       toProcess.pop();
-      for (V neighbor : graph.neighbors(v)) {
+      for (V neighbor : graph.neighbors(vertex)) {
         if (!visited.contains(neighbor)) {
           visited.add(neighbor);
           toProcess.push(neighbor);

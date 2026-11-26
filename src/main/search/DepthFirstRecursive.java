@@ -19,10 +19,10 @@ public final class DepthFirstRecursive {
     return visited;
   }
 
-  // Marks v as visited, then searches from each neighbor of v not yet visited.
-  private static <V> void search(Graph<V> graph, V v, Set<V> visited) {
-    visited.add(v);
-    for (V neighbor : graph.neighbors(v)) {
+  // Marks vertex as visited, then searches from each neighbor of vertex not yet visited.
+  private static <V> void search(Graph<V> graph, V vertex, Set<V> visited) {
+    visited.add(vertex);
+    for (V neighbor : graph.neighbors(vertex)) {
       if (!visited.contains(neighbor)) {
         search(graph, neighbor, visited);
       }

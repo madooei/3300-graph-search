@@ -23,9 +23,9 @@ public final class BreadthFirst {
     toProcess.enqueue(start);
 
     while (!toProcess.isEmpty()) {
-      V v = toProcess.front();
+      V vertex = toProcess.front();
       toProcess.dequeue();
-      for (V neighbor : graph.neighbors(v)) {
+      for (V neighbor : graph.neighbors(vertex)) {
         if (!visited.contains(neighbor)) {
           visited.add(neighbor);
           toProcess.enqueue(neighbor);

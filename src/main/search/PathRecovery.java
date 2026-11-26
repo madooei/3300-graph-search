@@ -31,12 +31,12 @@ public final class PathRecovery {
     toProcess.enqueue(start);
 
     while (!toProcess.isEmpty()) {
-      V v = toProcess.front();
+      V vertex = toProcess.front();
       toProcess.dequeue();
-      for (V neighbor : graph.neighbors(v)) {
+      for (V neighbor : graph.neighbors(vertex)) {
         if (!visited.contains(neighbor)) {
           visited.add(neighbor);
-          predecessor.put(neighbor, v);  // reached neighbor from v
+          predecessor.put(neighbor, vertex);  // reached neighbor from vertex
           toProcess.enqueue(neighbor);
         }
       }
@@ -81,15 +81,15 @@ public final class PathRecovery {
     toProcess.enqueue(start);
 
     while (!toProcess.isEmpty()) {
-      V v = toProcess.front();
+      V vertex = toProcess.front();
       toProcess.dequeue();
-      if (v.equals(target)) {
+      if (vertex.equals(target)) {
         break;  // the target came out, so stop the search
       }
-      for (V neighbor : graph.neighbors(v)) {
+      for (V neighbor : graph.neighbors(vertex)) {
         if (!visited.contains(neighbor)) {
           visited.add(neighbor);
-          predecessor.put(neighbor, v);
+          predecessor.put(neighbor, vertex);
           toProcess.enqueue(neighbor);
         }
       }
